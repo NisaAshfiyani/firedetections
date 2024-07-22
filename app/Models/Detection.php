@@ -1,4 +1,5 @@
 <?php
+// app/Models/Detection.php
 
 namespace App\Models;
 
@@ -9,12 +10,22 @@ class Detection extends Model
 {
     use HasFactory;
 
+    // Nama tabel yang terkait dengan model ini
+    protected $table = 'detections';
+
+    // Atribut yang dapat diisi secara massal
     protected $fillable = [
         'image',
         'description',
+        'timestamp',
     ];
 
-    protected $casts = [
-        'timestamp' => 'datetime',
-    ];
+    // Menggunakan tipe data tanggal untuk kolom timestamp
+    protected $dates = ['timestamp'];
+
+    // Mendapatkan akses ke kolom timestamp sebagai instance Carbon
+    public function getTimestampAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value);
+    }
 }

@@ -32,11 +32,11 @@
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>History Data</span></a>
   </li>
-  {{-- <li class="nav-item">
-    <a class="nav-link" href="/posts">
+  <li class="nav-item">
+    <a class="nav-link" href="/upload">
       <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Blog</span></a>
-  </li> --}}
+      <span>Upload</span></a>
+  </li>
 
   <li class="nav-item">
     <a class="nav-link" href="/articles">

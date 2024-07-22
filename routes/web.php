@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FireDetectionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UploadController;
@@ -32,7 +33,7 @@ Route::middleware(['guest'])->group(function() {
     Route::post('/login', [SesiController::class,'loginre']);
 });
 
-Route::get('/home', function () {
+Route::get('/rumah', function () {
     return redirect('/index/operator');
 });
 
@@ -49,7 +50,11 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('articles', ArticleController::class);
     // Route::get('/', [ArticleController::class, 'index']);
 
-    Route::resource('/users', AdminController::class);
+    Route::get('/upload', [FireDetectionController::class, 'showUploadForm']);
+    Route::post('/upload', [FireDetectionController::class, 'uploadFile']);
+
+
+    Route::resource('users', AdminController::class);
     // Route::get('/users', [AdminController::class, 'datauser']);
     // Route::get('/users/create', [AdminController::class, 'create']);
     // Route::post('/users', [AdminController::class, 'store']);

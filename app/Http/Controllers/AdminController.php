@@ -23,8 +23,10 @@ class AdminController extends Controller
     return view('live');
    }
    function history(){
-    $detections = Detection::all();
-    return view('history', compact('detections'));
+    // $detections = Detection::all();
+    // return view('history', compact('detections'));
+    $detections = Detection::all(); // Mengambil semua data dari tabel detections
+    return view('history', ['detections' => $detections]);
    }
    function profile(){
     

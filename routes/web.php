@@ -49,11 +49,11 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('articles', ArticleController::class);
     // Route::get('/', [ArticleController::class, 'index']);
-
-    Route::get('/upload', [FireDetectionController::class, 'showUploadForm']);
-    Route::post('/upload', [FireDetectionController::class, 'uploadFile']);
-
-
+    Route::get('/upload-form', function () {
+        return view('upload');
+    });
+    
+    Route::post('/detect', [FireDetectionController::class, 'detect']);
     Route::resource('users', AdminController::class);
     // Route::get('/users', [AdminController::class, 'datauser']);
     // Route::get('/users/create', [AdminController::class, 'create']);

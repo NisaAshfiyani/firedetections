@@ -4,40 +4,48 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class FireDetectionController extends Controller
 {
-    public function showUploadForm()
+    public function detect(Request $request)
     {
-        return view('upload');
-    }
-
-    public function uploadFile(Request $request)
-    {
+         // Validasi file input
         $request->validate([
-            'file' => 'required|mimes:jpg,jpeg,png,mp4|max:20480', // Validasi file
+            'file' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        // Simpan file yang diunggah
+        // Ambil file dari request
         $file = $request->file('file');
-        $filePath = $file->store('uploads');
-
+        
         // Kirim file ke API Flask
-        $response = Http::post('http://localhost:5000/process', [
-            'file_path' => storage_path('app/' . $filePath),
-        ]);
+        $response = Http::attach(
+            'file', file_get_contents($file->getRealPath()), $file->getClientOriginalName()
+        )->post('http://localhost:5000/upload');  // Ganti URL dengan endpoint Flask Anda
 
-        // Tangani respons dari API Flask
-        $data = $response->json();
-
+        // Cek status respons
         if ($response->successful()) {
+            $data = $response->json();
+
+            // Simpan data hasil deteksi ke log untuk debugging
+            Log::info('Detection Results:', $data);
+
+            // Konversi descriptions menjadi array jika belum
+            $descriptions = is_array($data['descriptions']) ? $data['descriptions'] : [$data['descriptions']];
+
+            // Tampilkan hasil deteksi di view
             return view('result', [
-                'detection_made' => $data['detection_made'],
-                'descriptions' => $data['descriptions'],
+                'detectionResults' => $data['detection_results'],
+                'descriptions' => $descriptions,
+                'detectionMade' => $data['detection_made']
             ]);
         } else {
-            return back()->withErrors(['error' => $data['error'] ?? 'Terjadi kesalahan saat memproses file.']);
+            // Tangani kesalahan jika API tidak merespons dengan benar
+            return view('result', [
+                'detectionResults' => ['No detection'],
+                'descriptions' => ['No description'],
+                'detectionMade' => false
+            ]);
         }
     }
 }

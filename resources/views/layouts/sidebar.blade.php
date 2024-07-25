@@ -33,7 +33,7 @@
       <span>History Data</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/upload">
+    <a class="nav-link" href="/upload-form">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Upload</span></a>
   </li>

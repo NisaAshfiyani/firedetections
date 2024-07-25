@@ -5,11 +5,11 @@
   
 @section('contents')
 <div class="container">  
-    <h1>Unggah File</h1>
-    <form action="{{ url('/upload') }}" method="post" enctype="multipart/form-data">
+    <h1>Upload Image for Fire Detection</h1>
+
+    <form action="{{ url('/detect') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="file" required>
-        <button type="submit">Unggah</button>
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload</button>
     </form>
-</div>
 @endsection

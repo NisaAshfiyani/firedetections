@@ -21,7 +21,7 @@ class FireDetectionController extends Controller
         // Kirim file ke API Flask
         $response = Http::attach(
             'file', file_get_contents($file->getRealPath()), $file->getClientOriginalName()
-        )->post('http://127.0.0.1:5000/upload');  // Ganti URL dengan endpoint Flask Anda
+        )->url('http://127.0.0.1:5000/upload');  // Ganti URL dengan endpoint Flask Anda
 
         // Cek status respons
         if ($response->successful()) {

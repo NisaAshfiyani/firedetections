@@ -16,7 +16,7 @@
   <!---------------- A D M I N -------------->
   @if (Auth::user()->role == 'admin')
   <li class="nav-item">
-    <a class="nav-link" href="/index">
+    <a class="nav-link" href="/dashboard">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
@@ -45,7 +45,7 @@
   </li>
   
   <li class="nav-item">
-    <a class="nav-link" href="users">
+    <a class="nav-link" href="/users">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Data User</span></a>
   </li>
@@ -59,7 +59,7 @@
 <!------------------- U S E R ------------->
   @if (Auth::user()->role == 'user')
   <li class="nav-item">
-    <a class="nav-link" href="/index">
+    <a class="nav-link" href="/dashboard">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>

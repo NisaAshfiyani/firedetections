@@ -6,6 +6,8 @@ use App\Http\Controllers\FireDetectionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UploadController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +44,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/index/operator', [AdminController::class,'admin'])->middleware('userAkses:admin');
     Route::get('/index/user', [AdminController::class,'user'])->middleware('userAkses:user');
     
+    Route::get('/dashboard', [AdminController::class,'dashboard']);
     Route::get('/live', [AdminController::class,'live']);
     Route::get('/history', [AdminController::class,'history']);
     Route::get('/profile', [AdminController::class,'profile']);
@@ -53,7 +56,27 @@ Route::middleware(['auth'])->group(function(){
         return view('upload');
     });
     
-    Route::post('/detect', [FireDetectionController::class, 'detect']);
+    // Route::post('/detect', [FireDetectionController::class, 'detect']);
+    Route::post('/detect-image', function (Request $request) {
+        $request->validate([
+            'image' => 'required|image|max:10240', // Maksimal 10MB
+        ]);
+    
+        $image = $request->file('image');
+    
+        // Mengirim gambar ke server Flask untuk deteksi
+        $response = Http::attach(
+            'file', file_get_contents($image->getPathname()), $image->getClientOriginalName()
+        )->post('http://localhost:5000/upload-image');
+    
+        if ($response->successful()) {
+            $data = $response->json();
+            return view('detection-result', ['result' => $data]);
+        } else {
+            return back()->withErrors(['error' => 'Gagal melakukan deteksi gambar.']);
+        }
+    })->name('detect.image');
+    
     Route::resource('users', AdminController::class);
     // Route::get('/users', [AdminController::class, 'datauser']);
     // Route::get('/users/create', [AdminController::class, 'create']);

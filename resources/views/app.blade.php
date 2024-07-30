@@ -15,7 +15,7 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">Fire Education</a>
+                <a class="navbar-brand" href="#!">Fire Detections</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -33,7 +33,7 @@
         .background-container {
             width: 100%;
             height: 300px; /* Sesuaikan tinggi sesuai kebutuhan Anda */
-            background-image: url('home/img/bg1.png');
+            background-image: url('images/bg1.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -52,8 +52,8 @@
 <body>
     <div class="background-container bg-secondary">
         <div class="content">
-            <h1>Welcome to Fire Education</h1>
-            {{-- <p>Ini adalah container dengan background gambar.</p> --}}
+            <h1>Welcome to Fire Educations</h1>
+            {{-- <p>Website ini dirancang untuk meningkatkan keamanan di dalam ruangan <br> dengan menggunakan teknologi deep learning dan algoritma YOLO untuk deteksi kebakaran yang cepat dan akurat.</p> --}}
         </div>
     </div>
         

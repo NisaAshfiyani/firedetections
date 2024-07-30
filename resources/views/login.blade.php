@@ -24,7 +24,14 @@
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-login-image">
                 <img src="{{ asset('admin/img/1.png') }}" alt="Image" class="login-image" width="500">
-                <div class="text-center"><h1 class="h4 text-gray-900 mb-4">Sistem Monitoring Deteksi Kebakaran</h1></div>
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Sistem Monitoring Deteksi Kebakaran</h1>
+                  <p>Website ini dirancang khusus untuk admin dan
+                    user(karyawan) dan tidak tersedia bagi
+                    masyarakat umum. Oleh karena itu,
+                    pendaftaran akun tidak dapat dilakukan
+                    secara bebas.</p>
+                </div>
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
@@ -57,9 +64,29 @@
                     <button type="submit" class="btn btn-primary btn-block btn-user">Login</button>
                   </form>
                   <hr>
-                  <div class="text-center">
-                    <a class="small" href="">Forgot Password?</a>
-                  </div>
+                  <div class="text-center mt-5">
+                    <a class="small" href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+                </div>
+
+                <!-- Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Jika Anda lupa password, Anda bisa hubungi administrator.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
                   {{-- <div class="text-center">
                     <a class="small" href="">Create an Account!</a>
                   </div> --}}
@@ -72,6 +99,10 @@
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Core plugin JavaScript-->
